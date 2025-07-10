@@ -1,8 +1,12 @@
 import bcrypt from 'bcrypt';
 import db from './db.config.js';
+import dotenv from 'dotenv';
 
-const email = 'admin@hermi.com';
-const plainPassword = 'admin444';
+// Load .env variables
+dotenv.config();
+
+const email = process.env.ADMIN_EMAIL;
+const plainPassword = process.env.ADMIN_PASSWORD;
 
 const createAdmin = async () => {
   const hashedPassword = await bcrypt.hash(plainPassword, 10);
@@ -15,3 +19,5 @@ const createAdmin = async () => {
 };
 
 createAdmin();
+
+
